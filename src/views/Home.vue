@@ -7,11 +7,16 @@
     </section>
 
     <section class="skills">
-      <SkillsCP/>
+      <SkillsCP />
     </section>
     
-    <div class="content">
-      </div>
+    <section class="portfolio">
+      <PortfolioCP />
+    </section>
+
+    <section class="contact">
+      <ContactCP />
+    </section>
 
     <FooterCP />
   </div>
@@ -23,6 +28,8 @@ import HeaderCP from '@/components/HeaderCP.vue'
 import FooterCP from '@/components/FooterCP.vue'
 import AboutMeCP from '@/components/AboutMeCP.vue'
 import SkillsCP from '@/components/SkillsCP.vue'
+import PortfolioCP from '@/components/PortfolioCP.vue'
+import ContactCP from '@/components/ContactCP.vue'
 
 const musicas = ref([])
 </script>
@@ -41,7 +48,7 @@ const musicas = ref([])
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  padding-bottom: 50px; 
+  padding-bottom: 20px; 
 }
 
 .skills {
@@ -51,11 +58,19 @@ const musicas = ref([])
   padding-bottom: 50px;
 }
 
-.content {
-  flex: 1;
-  padding: 20px;
+.portfolio {
+  width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 50px;
+}
+
+.contact {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 80px;
+  flex: 1;
 }
 
 html {
@@ -63,6 +78,6 @@ html {
 }
 
 section {
-  scroll-margin-top: 35px;
+  scroll-margin-top: 15px;
 }
 </style>

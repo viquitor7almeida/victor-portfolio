@@ -1,16 +1,14 @@
 <template>
   <footer class="footer">
     <div class="footer-bottom">
-      <p>&copy; 2026 <strong>João Victor</strong> — Todos os direitos reservados.</p>
+      <p>
+        <a href="https://www.youtube.com/watch?v=rB11hfPdtWk" target="_blank" rel="noopener" class="egg-link">
+          &copy; 2026 <strong>João Victor</strong> — Todos os direitos reservados.
+        </a>
+      </p>
     </div>
   </footer>
 </template>
-
-<script setup>
-defineOptions({
-  name: "FooterCP"
-});
-</script>
 
 <style scoped>
 .footer {
@@ -26,10 +24,6 @@ defineOptions({
   align-items: center;
 }
 
-.footer-bottom {
-  text-align: center;
-}
-
 .footer-bottom p {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.85rem; 
@@ -37,14 +31,16 @@ defineOptions({
   letter-spacing: 1px;
 }
 
+.egg-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: default; 
+}
+
 .footer-bottom strong {
   color: #ae0909;
   font-weight: 600;
   transition: color 0.3s ease;
-}
-
-.footer-bottom p:hover strong {
-  color: #ff3333;
 }
 
 @media (max-width: 600px) {

@@ -100,13 +100,13 @@ const skillsData = {
     { name: 'Java', icon: 'logos:java', desc: 'Sólida experiência em arquitetura MVC, Spring Boot e desenvolvimento de microserviços robustos.' },
     { name: 'Node.js', icon: 'logos:nodejs-icon', desc: 'Criação de APIs rápidas e escaláveis utilizando Express e ecossistema JavaScript assíncrono.' },
     { name: '.NET', icon: 'logos:dotnet', desc: 'Desenvolvimento de aplicações seguras com C#, focando em performance e integração com ecossistema Microsoft.' },
+    { name: 'MySQL', icon: 'logos:mysql-icon', desc: 'Gerenciamento de base de dados relacionais com foco em performance, consistência e alta disponibilidade.' }, 
     { name: 'PostgreSQL', icon: 'logos:postgresql', desc: 'Domínio em modelagem de dados, otimização de queries e manutenção de integridade.' },
     { name: 'MongoDB', icon: 'logos:mongodb-icon', desc: 'Implementação de soluções NoSQL flexíveis, focando em alta disponibilidade.' }
   ],
   frontend: [
     { name: 'TypeScript', icon: 'logos:typescript-icon', desc: 'Aplicação de tipagem estática para garantir escalabilidade em grandes bases de código.' },
-    { name: 'Sass', icon: 'logos:sass', desc: 'Design responsivo avançado e domínio de pré-processadores para CSS modular.' },
-    { name: 'HTML5', icon: 'logos:html-5', desc: 'Estruturação semântica de alta qualidade para acessibilidade e performance em SEO.' },
+    { name: 'CSS3', icon: 'logos:css-3', desc: 'Criação de layouts modernos e responsivos com domínio de Flexbox, Grid e animações puras.' },    { name: 'HTML5', icon: 'logos:html-5', desc: 'Estruturação semântica de alta qualidade para acessibilidade e performance em SEO.' },
     { name: 'React', icon: 'logos:react', desc: 'Construção de SPAs dinâmicas com Hooks, Context API e gerenciamento de estado.' },
     { name: 'Vue.js', icon: 'logos:vue', desc: 'Desenvolvimento reativo e modular com Composition API e alta performance.' },
     { name: 'Next.js', icon: 'logos:nextjs-icon', desc: 'Otimização de Web Vitals com Server Side Rendering para máxima velocidade.' }

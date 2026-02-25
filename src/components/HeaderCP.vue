@@ -33,7 +33,7 @@ const menuItems = [
   { label: 'Sobre', id: '#sobre', icon: sobreIcon },
   { label: 'Skills', id: '#skills', icon: skillsIcon },
   { label: 'Portfolio', id: '#portfolio', icon: portfolioIcon },
-  { label: 'Contato', id: '#contato', icon: contatoIcon },
+  { label: 'Contato', id: '#contact', icon: contatoIcon },
 ];
 </script>
 
