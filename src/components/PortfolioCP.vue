@@ -34,10 +34,10 @@
                 <p class="project-desc">{{ currentProject.desc }}</p>
 
                 <div class="action-buttons">
-                  <a :href="currentProject.links.app" target="_blank" class="btn-primary">
+                  <!-- <a :href="currentProject.links.app" target="_blank" class="btn-primary">
                     <Icon icon="fluent:open-16-filled" class="btn-icon" />
                     <span>Acessar App</span>
-                  </a>
+                  </a> -->
                   <a :href="currentProject.links.front" target="_blank" class="btn-secondary">
                     <Icon icon="mdi:github" class="btn-icon" />
                     <span>Repositório Front</span>
