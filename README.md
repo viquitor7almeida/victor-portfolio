@@ -20,7 +20,7 @@ Bem-vindo ao repositório do meu portfólio pessoal!
 ## Como Rodar Localmente
 
 ```bash
-git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+git clone (https://github.com/viquitor7almeida/victor-portfolio.git)
 cd victor-portfolio
 npm run dev
 ```
