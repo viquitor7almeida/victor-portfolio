@@ -13,7 +13,6 @@ Bem-vindo ao repositório do meu portfólio pessoal!
 
 ### Infraestrutura & DevOps
 
-* **Docker & Docker Compose** (Containerização total)
 * **GitHub Actions** (Pipeline de CI/CD)
 * **Vercel** (Hospedagem da camada de UI)
 
