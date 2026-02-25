@@ -1,6 +1,6 @@
 # Meu Portfólio & Ecossistema Full Stack
 
-Bem-vindo ao repositório do meu portfólio pessoal! **Vue.js** e **Docker**.
+Bem-vindo ao repositório do meu portfólio pessoal!
 
 ---
 
