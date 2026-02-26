@@ -1,6 +1,6 @@
 <template>
   <section 
-    ref="sectionRef"
+    ref="sectionRef" 
     class="skills-section" 
     :class="{ 'is-visible': isVisible }"
     id="skills"
@@ -37,6 +37,7 @@
                 class="skill-card"
                 @mouseenter="updateHover(skill)"
                 @mouseleave="resetHover"
+                @click="updateHover(skill)"
               >
                 <div class="icon-box">
                   <Icon :icon="skill.icon" class="skill-icon" />
@@ -84,7 +85,7 @@ const isVisible = ref(false);
 let observer = null;
 
 const activeTab = ref('backend');
-const defaultState = { name: 'default', desc: 'Passe o mouse sobre uma tecnologia para explorar minha experiência técnica.' };
+const defaultState = { name: 'default', desc: 'Passe o mouse (ou toque) sobre uma tecnologia para explorar minha experiência técnica.' };
 const hoveredSkill = ref(defaultState);
 
 const changeTab = (tab) => {
@@ -106,7 +107,8 @@ const skillsData = {
   ],
   frontend: [
     { name: 'TypeScript', icon: 'logos:typescript-icon', desc: 'Aplicação de tipagem estática para garantir escalabilidade em grandes bases de código.' },
-    { name: 'CSS3', icon: 'logos:css-3', desc: 'Criação de layouts modernos e responsivos com domínio de Flexbox, Grid e animações puras.' },    { name: 'HTML5', icon: 'logos:html-5', desc: 'Estruturação semântica de alta qualidade para acessibilidade e performance em SEO.' },
+    { name: 'CSS3', icon: 'logos:css-3', desc: 'Criação de layouts modernos e responsivos com domínio de Flexbox, Grid e animações puras.' },
+    { name: 'HTML5', icon: 'logos:html-5', desc: 'Estruturação semântica de alta qualidade para acessibilidade e performance em SEO.' },
     { name: 'React', icon: 'logos:react', desc: 'Construção de SPAs dinâmicas com Hooks, Context API e gerenciamento de estado.' },
     { name: 'Vue.js', icon: 'logos:vue', desc: 'Desenvolvimento reativo e modular com Composition API e alta performance.' },
     { name: 'Next.js', icon: 'logos:nextjs-icon', desc: 'Otimização de Web Vitals com Server Side Rendering para máxima velocidade.' }
@@ -137,7 +139,7 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   display: flex;
   justify-content: center;
   padding: 100px 20px;
-  background: #050505;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -181,6 +183,9 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 
 .tabs-wrapper {
   margin-bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .tabs-nav {
@@ -189,6 +194,7 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   padding: 6px;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  width: fit-content;
 }
 
 .tab-btn {
@@ -218,24 +224,26 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   width: 100%;
-  max-width: 650px;
+  max-width: 600px;
 }
 
 .skill-card {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
-  padding: 20px 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
+  aspect-ratio: 1 / 1;
+  width: 100%;
 }
 
 .skill-card:hover {
@@ -246,7 +254,7 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 }
 
 .skill-icon {
-  font-size: 38px;
+  font-size: clamp(24px, 4vw, 38px);
   filter: grayscale(0.4);
   transition: all 0.3s ease;
 }
@@ -257,8 +265,9 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 
 .skill-name {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
   font-weight: 600;
+  text-align: center;
 }
 
 .description-column {
@@ -282,6 +291,7 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   position: relative;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
 }
 
 .panel-glow {
@@ -363,13 +373,31 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 .is-visible .anim-fade-up { opacity: 1; transform: translateY(0); }
 .is-visible .anim-fade-up-delayed { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
 
-@media (max-width: 1100px) {
-  .skills-layout { gap: 40px; }
+@media (max-width: 950px) {
+  .skills-layout { grid-template-columns: 1fr; gap: 50px; }
+  .description-panel { max-width: 100%; min-height: 320px; padding: 40px 30px; }
+  .skills-grid { max-width: 100%; justify-items: center; }
 }
 
-@media (max-width: 950px) {
-  .skills-layout { grid-template-columns: 1fr; }
-  .description-panel { max-width: 100%; min-height: 300px; }
-  .skills-grid { max-width: 100%; }
+@media (max-width: 600px) {
+  .skills-section { padding: 60px 15px; }
+  .tab-btn { padding: 10px 15px; font-size: 0.75rem; }
+  .skills-grid { 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px; 
+    max-width: 450px;
+  }
+  .skill-card { border-radius: 15px; }
+  .detail-title { font-size: 1.8rem; }
+  .desc-text { font-size: 1rem; line-height: 1.6; }
+}
+
+@media (max-width: 400px) {
+  .skills-grid { 
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 300px;
+  }
+  .tabs-nav { width: 100%; }
+  .tab-btn { flex: 1; padding: 10px 5px; font-size: 0.7rem; }
 }
 </style>

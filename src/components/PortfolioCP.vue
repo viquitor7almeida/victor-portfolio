@@ -1,5 +1,10 @@
 <template>
-  <section class="portfolio-section" id="portfolio">
+  <section 
+    ref="sectionRef"
+    class="portfolio-section" 
+    :class="{ 'is-visible': isVisible }"
+    id="portfolio"
+  >
     <div class="portfolio-container">
       <div class="portfolio-header anim-fade-up">
         <h2 class="title-gradient">Portfólio</h2>
@@ -34,10 +39,6 @@
                 <p class="project-desc">{{ currentProject.desc }}</p>
 
                 <div class="action-buttons">
-                  <!-- <a :href="currentProject.links.app" target="_blank" class="btn-primary">
-                    <Icon icon="fluent:open-16-filled" class="btn-icon" />
-                    <span>Acessar App</span>
-                  </a> -->
                   <a :href="currentProject.links.front" target="_blank" class="btn-secondary">
                     <Icon icon="mdi:github" class="btn-icon" />
                     <span>Repositório Front</span>
@@ -71,13 +72,15 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import { Icon } from '@iconify/vue';
 import imgMusicLib from '@/assets/music-lib.png';
-import imgProject2 from '@/assets/music-lib.png';
 
+const sectionRef = ref(null);
+const isVisible = ref(false);
 const currentIndex = ref(0);
 const transitionName = ref('slide-right');
+let observer = null;
 
 const projects = [
   {
@@ -90,36 +93,37 @@ const projects = [
       front:'https://github.com/viquitor7almeida/LibMusical-Front',
       back: 'https://github.com/viquitor7almeida/LibMusical-Api'
     }
-  },
-//   {
-//     title: 'Nexus E-Commerce',
-//     techs: ['Node.js', 'React', 'MongoDB', 'Docker', 'AWS'],
-//     desc: 'Sistema de comércio eletrônico fictício construído para demonstrar fluxos complexos de pagamento e gestão de estoque em tempo real. Utiliza microsserviços para separar o processamento de pedidos da vitrine de produtos, assegurando resiliência. O frontend dinâmico otimiza a conversão e a experiência do usuário em todas as telas.',
-//     image: imgProject2,
-//     links: {
-//       app: '#',
-//       front:'#',
-//       back: '#'
-//     }
-//   }
+  }
 ];
 
 const currentProject = computed(() => projects[currentIndex.value]);
 
 const nextProject = () => {
+  if (projects.length <= 1) return;
   transitionName.value = 'slide-left';
   currentIndex.value = (currentIndex.value + 1) % projects.length;
 };
 
 const prevProject = () => {
+  if (projects.length <= 1) return;
   transitionName.value = 'slide-right';
   currentIndex.value = (currentIndex.value - 1 + projects.length) % projects.length;
 };
 
 const goToProject = (index) => {
+  if (index === currentIndex.value) return;
   transitionName.value = index > currentIndex.value ? 'slide-left' : 'slide-right';
   currentIndex.value = index;
 };
+
+onMounted(() => {
+  observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) isVisible.value = true;
+  }, { threshold: 0.1 });
+  if (sectionRef.value) observer.observe(sectionRef.value);
+});
+
+onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 </script>
 
 <style scoped>
@@ -128,7 +132,7 @@ const goToProject = (index) => {
   display: flex;
   justify-content: center;
   padding: 100px 20px;
-  background: #050505;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -199,6 +203,7 @@ const goToProject = (index) => {
   background: radial-gradient(circle at center, rgba(15, 15, 15, 0.8), rgba(5, 5, 5, 1));
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
 }
 
 .project-layout {
@@ -243,12 +248,12 @@ const goToProject = (index) => {
 .project-img {
   width: 100%;
   height: auto;
+  aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 20px;
   position: relative;
   z-index: 1;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .info-column {
@@ -271,17 +276,15 @@ const goToProject = (index) => {
   color: rgba(255, 255, 255, 0.8);
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
 .project-title {
   color: #fff;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 800;
-  margin-bottom: 20px;
-  line-height: 1.2;
+  margin-bottom: 15px;
 }
 
 .divider {
@@ -289,60 +292,45 @@ const goToProject = (index) => {
   height: 4px;
   background: #ae0909;
   border-radius: 2px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .project-desc {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 40px;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
 }
 
 .action-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-}
-
-.btn-primary, .btn-secondary {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background: #ae0909;
-  color: #fff;
-  box-shadow: 0 4px 15px rgba(174, 9, 9, 0.4);
-}
-
-.btn-primary:hover {
-  background: #c90e0e;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(174, 9, 9, 0.6);
+  gap: 12px;
 }
 
 .btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(174, 9, 9, 0.1);
+  border-color: #ae0909;
   transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-icon {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .carousel-indicators {
@@ -359,57 +347,56 @@ const goToProject = (index) => {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 0;
 }
 
 .indicator-dot.active {
   width: 30px;
   border-radius: 10px;
   background: #ae0909;
-  box-shadow: 0 0 10px rgba(174, 9, 9, 0.5);
 }
-
-.slide-left-enter-active,
-.slide-left-leave-active,
-.slide-right-enter-active,
-.slide-right-leave-active {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-left-enter-from { opacity: 0; transform: translateX(50px); }
-.slide-left-leave-to { opacity: 0; transform: translateX(-50px); }
-
-.slide-right-enter-from { opacity: 0; transform: translateX(-50px); }
-.slide-right-leave-to { opacity: 0; transform: translateX(50px); }
 
 .anim-fade-up, .anim-fade-up-delayed, .anim-fade-up-list {
-  animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.anim-fade-up-delayed { animation-delay: 0.2s; }
-.anim-fade-up-list { animation-delay: 0.4s; }
+.is-visible .anim-fade-up { opacity: 1; transform: translateY(0); }
+.is-visible .anim-fade-up-delayed { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.is-visible .anim-fade-up-list { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+.slide-left-enter-active, .slide-left-leave-active,
+.slide-right-enter-active, .slide-right-leave-active {
+  transition: all 0.5s ease;
 }
+.slide-left-enter-from { opacity: 0; transform: translateX(30px); }
+.slide-left-leave-to { opacity: 0; transform: translateX(-30px); }
+.slide-right-enter-from { opacity: 0; transform: translateX(-30px); }
+.slide-right-leave-to { opacity: 0; transform: translateX(30px); }
 
 @media (max-width: 1024px) {
   .project-layout { grid-template-columns: 1fr; }
-  .image-column { padding: 30px 30px 0 30px; }
-  .info-column { padding: 30px; align-items: center; text-align: center; }
+  .image-column { padding: 30px; }
+  .info-column { padding: 0 40px 40px 40px; text-align: center; align-items: center; }
   .tech-tags, .action-buttons { justify-content: center; }
   .divider { margin-left: auto; margin-right: auto; }
 }
 
 @media (max-width: 768px) {
-  .carousel-wrapper { flex-direction: column; }
-  .nav-btn { position: absolute; top: 30%; transform: translateY(-50%); z-index: 20; background: rgba(0,0,0,0.5); }
+  .portfolio-section { padding: 60px 15px; }
+  .carousel-wrapper { gap: 10px; }
+  .nav-btn { width: 40px; height: 40px; font-size: 20px; }
+  .project-title { font-size: 1.8rem; }
+  .image-wrapper { transform: none; }
+  .image-wrapper:hover { transform: scale(1.02); }
+  .action-buttons { flex-direction: column; width: 100%; }
+  .btn-secondary { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .nav-btn { position: absolute; top: 180px; background: rgba(0,0,0,0.6); }
   .prev-btn { left: 10px; }
   .next-btn { right: 10px; }
-  .nav-btn:hover { transform: translateY(-50%) scale(1.1); }
-  .action-buttons { flex-direction: column; width: 100%; }
-  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .info-column { padding: 0 20px 30px 20px; }
 }
-</style>
+</style>```

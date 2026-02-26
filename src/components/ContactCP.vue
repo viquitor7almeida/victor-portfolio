@@ -259,6 +259,7 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   font-size: 1rem;
   font-weight: 500;
   margin-top: 2px;
+  word-break: break-all;
 }
 
 .card-actions {
@@ -323,6 +324,7 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   font-size: 1rem;
   outline: none;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .input-group input:focus, 
@@ -375,9 +377,30 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 .is-visible .anim-fade-up-list { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
 
 @media (max-width: 950px) {
+  .contact-section { padding: 60px 20px; }
   .contact-layout { grid-template-columns: 1fr; gap: 40px; }
   .info-column { order: 2; }
-  .form-column { order: 1; }
-  .contact-card:hover { transform: none; }
+  .form-column { order: 1; padding: 30px; }
+  .contact-card:hover { transform: none; background: rgba(174, 9, 9, 0.08); }
 }
-</style>
+
+@media (max-width: 500px) {
+  .contact-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+  }
+  .card-actions {
+    width: 100%;
+    justify-content: flex-end;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+  }
+  .card-main {
+    width: 100%;
+  }
+  .title-gradient { font-size: 2.5rem; }
+  .subtitle { font-size: 1rem; }
+}
+</style>```
