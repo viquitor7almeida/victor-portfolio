@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "about": "Sobre",
+    "skills": "Skills",
+    "portfolio": "Portfólio",
+    "contact": "Contato"
+  },
+  "about": {
+    "title": "Olá Mundo!",
+    "p1": "Me chamo {name}, sou um jovem {dev} desde muito cedo. Minha curiosidade por 'mexer' com eletrônicos rapidamente se transformou em fascínio pelo mundo da {prog} e do desenvolvimento de software.",
+    "p1_name": "João Victor",
+    "p1_dev": "desenvolvedor apaixonado por tecnologia",
+    "p1_prog": "programação",
+    "p2": "Comecei meus estudos em {java} na adolescência e, com o passar do tempo, decidi me aprofundar na linguagem, {backend} Logo após, expandi meu conhecimento para {js} para aprimorar minhas habilidades em {front} Estou constantemente explorando novas tecnologias por puro desejo de aprender e construir soluções {robust}.",
+    "p2_java": "JAVA",
+    "p2_backend": "focando no BACKEND.",
+    "p2_js": "JavaScript",
+    "p2_front": "Frontend",
+    "p2_robust": "robustas e eficientes",
+    "btnResume": "Ver Currículo",
+    "btnLinkedin": "Ver LinkedIn"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Tecnologias e ferramentas que domino.",
+    "tabs": {
+      "backend": "Backend",
+      "frontend": "Frontend",
+      "outros": "Outros"
+    },
+    "default_desc": "Passe o mouse (ou toque) sobre uma tecnologia para explorar minha experiência técnica.",
+    "items": {
+      "Java": "Sólida experiência em arquitetura MVC, Spring Boot e desenvolvimento de microserviços robustos.",
+      "Nodejs": "Criação de APIs rápidas e escaláveis utilizando Express e ecossistema JavaScript assíncrono.",
+      "DotNet": "Desenvolvimento de aplicações seguras com C#, focando em performance e integração com ecossistema Microsoft.",
+      "MySQL": "Gerenciamento de base de dados relacionais com foco em performance, consistência e alta disponibilidade.",
+      "PostgreSQL": "Domínio em modelagem de dados, otimização de queries e manutenção de integridade.",
+      "MongoDB": "Implementação de soluções NoSQL flexíveis, focando em alta disponibilidade.",
+      "TypeScript": "Aplicação de tipagem estática para garantir escalabilidade em grandes bases de código.",
+      "CSS3": "Criação de layouts modernos e responsivos com domínio de Flexbox, Grid e animações puras.",
+      "HTML5": "Estruturação semântica de alta qualidade para acessibilidade e performance em SEO.",
+      "React": "Construção de SPAs dinâmicas com Hooks, Context API e gerenciamento de estado.",
+      "Vuejs": "Desenvolvimento reativo e modular com Composition API e alta performance.",
+      "Nextjs": "Otimização de Web Vitals com Server Side Rendering para máxima velocidade.",
+      "Git": "Gestão de fluxo de trabalho (GitFlow) e versionamento colaborativo.",
+      "Azure": "Configuração de serviços cloud e deploy em ambiente Microsoft.",
+      "Docker": "Containerização de aplicações para garantir paridade entre ambientes.",
+      "Linux": "Operação em servidores e automação via Bash Script.",
+      "Jenkins": "Configuração de pipelines automatizados para CI/CD.",
+      "AWS": "Utilização de infraestrutura como serviço (S3, EC2, Lambda) na nuvem Amazon."
+    }
+  },
+
+  "portfolio": {
+  "title": "Portfólio",
+  "subtitle": "Projetos reais, soluções robustas e código limpo.",
+  "projects": {
+    "music_lib": {
+      "title": "Lib Musical",
+      "desc": "Plataforma completa para gestão de composições, envolvendo cifras, áudios, versos e afins. O backend foi desenvolvido com rigoroso padrão de qualidade, implementando autenticação e autorização robustas via Spring Security, JWT, Gestão de usuários, DTOs, Geração de bancos de teste via JPA e etc. A arquitetura em camadas e o gerenciamento de dependências via Maven garantem um sistema altamente escalável, seguro e de fácil manutenção, preparado para alta concorrência.",
+      "btnFront": "Repositório Front",
+      "btnBack": "Repositório Back"
+            }
+        }
+    },
+
+    "contact": {
+  "title": "Contato",
+  "subtitle": "Vamos construir algo incrível juntos? Entre em contato.",
+  "form": {
+    "name_label": "Nome",
+    "name_placeholder": "Seu nome completo",
+    "email_label": "E-mail",
+    "email_placeholder": "seu@email.com",
+    "message_label": "Mensagem",
+    "message_placeholder": "Como posso ajudar?",
+    "btn_send": "Enviar Mensagem",
+    "btn_sending": "Abrindo E-mail..."
+        }
+    },
+
+    "footer": {
+    "rights": "Todos os direitos reservados."
+    }
+}

@@ -22,26 +22,27 @@
       </h2>
       
       <div class="description-container">
-        <p class="description anim-fade-up-delayed">
-          Me chamo <strong>João Victor</strong>, sou um jovem <strong>desenvolvedor apaixonado por tecnologia</strong> desde muito cedo. 
-          Minha curiosidade por "mexer" com eletrônicos rapidamente se transformou em fascínio pelo mundo da 
-          <strong>programação</strong> e do desenvolvimento de software.
-        </p>
+        <i18n-t keypath="about.p1" tag="p" class="description anim-fade-up-delayed">
+          <template #name><strong>{{ t('about.p1_name') }}</strong></template>
+          <template #dev><strong>{{ t('about.p1_dev') }}</strong></template>
+          <template #prog><strong>{{ t('about.p1_prog') }}</strong></template>
+        </i18n-t>
 
-        <p class="description anim-fade-up-list">
-          Comecei meus estudos em <strong>JAVA</strong> na adolescência e, com o passar do tempo, decidi me aprofundar na linguagem, <strong>focando no BACKEND.</strong> 
-          Logo após, expandi meu conhecimento para <strong>JavaScript</strong> para aprimorar minhas habilidades em 
-          <strong>Frontend</strong>. Estou constantemente explorando novas tecnologias por puro desejo de aprender e construir 
-          soluções <strong>robustas e eficientes</strong>.
-        </p>
+        <i18n-t keypath="about.p2" tag="p" class="description anim-fade-up-list">
+          <template #java><strong>{{ t('about.p2_java') }}</strong></template>
+          <template #backend><strong>{{ t('about.p2_backend') }}</strong></template>
+          <template #js><strong>{{ t('about.p2_js') }}</strong></template>
+          <template #front><strong>{{ t('about.p2_front') }}</strong></template>
+          <template #robust><strong>{{ t('about.p2_robust') }}</strong></template>
+        </i18n-t>
       </div>
 
       <div class="actions-container anim-fade-up-buttons">
         <a :href="resume" target="_blank" class="btn-primary">
-          Ver Currículo
+          {{ t('about.btnResume') }}
         </a>
         <a href="https://www.linkedin.com/in/jovalmeida/" target="_blank" class="btn-secondary">
-          Ver LinkedIn
+          {{ t('about.btnLinkedin') }}
         </a>
       </div>
     </div>
@@ -49,11 +50,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
+import { useI18n } from "vue-i18n";
 import avatar from "@/assets/red-avatar.png";
 import resume from "@/assets/curriculo.pdf";
 
-const titleText = "Olá Mundo!".split("");
+const { t } = useI18n();
+
+// titleText agora é uma computed para reagir à troca de idioma (Olá Mundo -> Hello World)
+const titleText = computed(() => t('about.title').split(""));
+
 const sectionRef = ref(null);
 const isVisible = ref(false);
 let observer = null;
@@ -76,6 +82,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+/* O CSS permanece exatamente o mesmo que você já tem */
 .gallery-wrapper {
   display: flex;
   justify-content: center;
@@ -154,7 +161,7 @@ onBeforeUnmount(() => {
   margin: 0;
 }
 
-.description strong {
+.description :deep(strong) {
   color: #c91a1a;
   font-weight: 600;
 }
