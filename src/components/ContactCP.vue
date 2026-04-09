@@ -7,8 +7,8 @@
   >
     <div class="contact-container">
       <div class="contact-header anim-fade-up">
-        <h2 class="title-gradient">Contato</h2>
-        <p class="subtitle">Vamos construir algo incrível juntos? Entre em contato.</p>
+        <h2 class="title-gradient">{{ t('contact.title') }}</h2>
+        <p class="subtitle">{{ t('contact.subtitle') }}</p>
       </div>
 
       <div class="contact-layout">
@@ -42,22 +42,37 @@
         <div class="form-column anim-fade-up-list">
           <form @submit.prevent="handleSubmit" class="contact-form">
             <div class="input-group">
-              <label>Nome</label>
-              <input type="text" v-model="form.name" placeholder="Seu nome completo" required />
+              <label>{{ t('contact.form.name_label') }}</label>
+              <input 
+                type="text" 
+                v-model="form.name" 
+                :placeholder="t('contact.form.name_placeholder')" 
+                required 
+              />
             </div>
             
             <div class="input-group">
-              <label>E-mail</label>
-              <input type="email" v-model="form.email" placeholder="seu@email.com" required />
+              <label>{{ t('contact.form.email_label') }}</label>
+              <input 
+                type="email" 
+                v-model="form.email" 
+                :placeholder="t('contact.form.email_placeholder')" 
+                required 
+              />
             </div>
 
             <div class="input-group">
-              <label>Mensagem</label>
-              <textarea v-model="form.message" rows="5" placeholder="Como posso ajudar?" required></textarea>
+              <label>{{ t('contact.form.message_label') }}</label>
+              <textarea 
+                v-model="form.message" 
+                rows="5" 
+                :placeholder="t('contact.form.message_placeholder')" 
+                required
+              ></textarea>
             </div>
 
             <button type="submit" class="submit-btn" :disabled="isSending">
-              <span>{{ isSending ? 'Abrindo E-mail...' : 'Enviar Mensagem' }}</span>
+              <span>{{ isSending ? t('contact.form.btn_sending') : t('contact.form.btn_send') }}</span>
               <Icon icon="fluent:send-24-filled" class="send-icon" />
             </button>
           </form>
@@ -69,12 +84,15 @@
 
 <script setup>
 import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
+import { useI18n } from "vue-i18n";
 import { Icon } from '@iconify/vue';
 
 import iconGithub from '@/assets/github.png'
 import iconLinkedin from '@/assets/linkedin.png'
 import iconWhatsapp from '@/assets/whatsapp.png'
 import iconEmail from '@/assets/email.png'
+
+const { t } = useI18n();
 
 const sectionRef = ref(null);
 const isVisible = ref(false);
@@ -129,7 +147,7 @@ const handleSubmit = () => {
   const subject = encodeURIComponent(`Contato via Portfólio: ${form.name}`);
   const body = encodeURIComponent(
     `Nome: ${form.name}\n` +
-    `Email para retorno: ${form.email}\n\n` +
+    `Email: ${form.email}\n\n` +
     `Mensagem:\n${form.message}`
   );
 
@@ -403,4 +421,4 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   .title-gradient { font-size: 2.5rem; }
   .subtitle { font-size: 1rem; }
 }
-</style>```
+</style>

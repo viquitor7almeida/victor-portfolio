@@ -7,37 +7,117 @@
         </a>
       </div>
 
-      <nav>
+      <nav class="nav-wrapper">
         <ul class="nav-menu">
-          <li v-for="item in menuItems" :key="item.id">
+          <li v-for="item in translatedMenu" :key="item.id">
             <a :href="item.id" class="nav-link">
               <img :src="item.icon" :alt="item.label" class="nav-item-icon" />
               <span>{{ item.label }}</span>
             </a>
           </li>
         </ul>
+
+        <div class="lang-container">
+          <button 
+            @click="toggleLanguage" 
+            class="lang-switch"
+            :title="locale === 'pt' ? 'Switch to English' : 'Mudar para Português'"
+          >
+            <img 
+              v-if="locale === 'pt'" 
+              src="https://flagcdn.com/w40/br.png" 
+              alt="Português" 
+              class="flag-icon"
+            />
+            <img 
+              v-else 
+              src="https://flagcdn.com/w40/us.png" 
+              alt="English" 
+              class="flag-icon"
+            />
+            <span class="lang-text">{{ locale.toUpperCase() }}</span>
+          </button>
+        </div>
       </nav>
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import opcoesIcon from '../assets/java.png';
 import sobreIcon from '../assets/sobre.png';
 import skillsIcon from '../assets/skills.png'; 
 import portfolioIcon from '../assets/portfolio.png'; 
 import contatoIcon from '../assets/contato.png'; 
 
-const menuItems = [
-  { label: 'Sobre', id: '#sobre', icon: sobreIcon },
-  { label: 'Skills', id: '#skills', icon: skillsIcon },
-  { label: 'Portfolio', id: '#portfolio', icon: portfolioIcon },
-  { label: 'Contato', id: '#contact', icon: contatoIcon },
-];
+const { t, locale } = useI18n();
+
+const toggleLanguage = () => {
+  locale.value = locale.value === 'pt' ? 'en' : 'pt';
+};
+
+const translatedMenu = computed(() => [
+  { label: t('nav.about'), id: '#sobre', icon: sobreIcon },
+  { label: t('nav.skills'), id: '#skills', icon: skillsIcon },
+  { label: t('nav.portfolio'), id: '#portfolio', icon: portfolioIcon },
+  { label: t('nav.contact'), id: '#contact', icon: contatoIcon },
+]);
 </script>
 
 <style scoped>
+/* ... Mantendo seus estilos anteriores ... */
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.lang-container {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(255, 68, 68, 0.3);
+  padding-left: 20px;
+}
+
+.lang-switch {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(166, 33, 33, 0.5);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px; /* Mais arredondado para estilo pílula */
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flag-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 50%; /* Bandeira circular */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lang-switch:hover {
+  background: rgba(166, 33, 33, 0.2);
+  border-color: #ae0909;
+  box-shadow: 0 0 15px rgba(174, 9, 9, 0.4);
+  transform: translateY(-2px);
+}
+
+.lang-text {
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Reutilizando seus estilos do header original */
 .main-header {
   height: 80px;
   width: 100%;
@@ -59,17 +139,6 @@ const menuItems = [
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.menu-icon {
-  height: 55px;
-  width: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.menu-icon:hover {
-  transform: scale(1.1);
 }
 
 .nav-menu {
@@ -98,11 +167,7 @@ const menuItems = [
 }
 
 .nav-link:hover {
-  color: #911414ce; 
-}
-
-.nav-menu li {
-  position: relative;
+  color: #d52c2c; 
 }
 
 .nav-menu li::after {
@@ -126,11 +191,10 @@ const menuItems = [
 }
 
 @media (max-width: 768px) {
-  .nav-link span {
-    display: none; 
-  }
-  .nav-menu {
-    gap: 20px;
-  }
+  .nav-link span { display: none; }
+  .nav-menu { gap: 20px; }
+  .nav-wrapper { gap: 15px; }
+  .lang-container { padding-left: 10px; }
+  .lang-text { display: none; } /* No mobile, deixa só a bandeira para economizar espaço */
 }
 </style>

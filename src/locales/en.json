@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "Hello World!",
+    "p1": "My name is {name}, I am a young {dev} from an early age. My curiosity for 'tinkering' with electronics quickly turned into a fascination for the world of {prog} and software development.",
+    "p1_name": "João Victor",
+    "p1_dev": "developer passionate about technology",
+    "p1_prog": "programming",
+    "p2": "I started my {java} studies as a teenager and, over time, decided to go deeper into the language, {backend} Shortly after, I expanded my knowledge to {js} to improve my {front} skills. I am constantly exploring new technologies out of a pure desire to learn and build {robust} solutions.",
+    "p2_java": "JAVA",
+    "p2_backend": "focusing on BACKEND.",
+    "p2_js": "JavaScript",
+    "p2_front": "Frontend",
+    "p2_robust": "robust and efficient",
+    "btnResume": "View Resume",
+    "btnLinkedin": "View LinkedIn"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and tools I master.",
+    "tabs": {
+      "backend": "Backend",
+      "frontend": "Frontend",
+      "outros": "Others"
+    },
+    "default_desc": "Hover (or tap) over a technology to explore my technical experience.",
+    "items": {
+      "Java": "Solid experience in MVC architecture, Spring Boot, and robust microservices development.",
+      "Nodejs": "Creation of fast and scalable APIs using Express and asynchronous JavaScript ecosystem.",
+      "DotNet": "Development of secure applications with C#, focusing on performance and integration with Microsoft ecosystem.",
+      "MySQL": "Relational database management focusing on performance, consistency, and high availability.",
+      "PostgreSQL": "Expertise in data modeling, query optimization, and integrity maintenance.",
+      "MongoDB": "Implementation of flexible NoSQL solutions focusing on high availability.",
+      "TypeScript": "Application of static typing to ensure scalability in large codebases.",
+      "CSS3": "Creation of modern and responsive layouts with mastery of Flexbox, Grid, and pure animations.",
+      "HTML5": "High-quality semantic structuring for accessibility and SEO performance.",
+      "React": "Building dynamic SPAs with Hooks, Context API, and state management.",
+      "Vuejs": "Reactive and modular development with Composition API and high performance.",
+      "Nextjs": "Web Vitals optimization with Server Side Rendering for maximum speed.",
+      "Git": "Workflow management (GitFlow) and collaborative versioning.",
+      "Azure": "Cloud services configuration and deployment in Microsoft environment.",
+      "Docker": "Containerization of applications to ensure parity between environments.",
+      "Linux": "Server operations and automation via Bash Script.",
+      "Jenkins": "Configuration of automated pipelines for CI/CD.",
+      "AWS": "Utilization of infrastructure as a service (S3, EC2, Lambda) in the Amazon cloud."
+    }
+  },
+
+  "portfolio": {
+  "title": "Portfolio",
+  "subtitle": "Real projects, robust solutions, and clean code.",
+  "projects": {
+    "music_lib": {
+      "title": "Music Library",
+      "desc": "Complete platform for managing compositions, involving chords, audios, verses, and more. The backend was developed with rigorous quality standards, implementing robust authentication and authorization via Spring Security, JWT, User management, DTOs, JPA test database generation, etc. The layered architecture and dependency management via Maven ensure a highly scalable, secure, and easy-to-maintain system, prepared for high concurrency.",
+      "btnFront": "Frontend Repo",
+      "btnBack": "Backend Repo"
+            }
+        }
+    },
+
+    "contact": {
+  "title": "Contact",
+  "subtitle": "Let's build something amazing together? Get in touch.",
+  "form": {
+    "name_label": "Name",
+    "name_placeholder": "Your full name",
+    "email_label": "Email",
+    "email_placeholder": "your@email.com",
+    "message_label": "Message",
+    "message_placeholder": "How can I help you?",
+    "btn_send": "Send Message",
+    "btn_sending": "Opening Email..."
+        }
+    },
+
+    "footer": {
+    "rights": "All rights reserved."
+    }
+}

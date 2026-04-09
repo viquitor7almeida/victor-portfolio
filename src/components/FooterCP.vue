@@ -3,12 +3,18 @@
     <div class="footer-bottom">
       <p>
         <a href="https://www.youtube.com/watch?v=rB11hfPdtWk" target="_blank" rel="noopener" class="egg-link">
-          &copy; 2026 <strong>João Victor</strong> — Todos os direitos reservados.
+          &copy; 2026 <strong>João Victor</strong> — {{ t('footer.rights') }}
         </a>
       </p>
     </div>
   </footer>
 </template>
+
+<script setup>
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+</script>
 
 <style scoped>
 .footer {

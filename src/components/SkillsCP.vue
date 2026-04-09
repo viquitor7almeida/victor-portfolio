@@ -10,8 +10,8 @@
         
         <div class="grid-column anim-fade-up">
           <div class="skills-header">
-            <h2 class="title-gradient">Skills</h2>
-            <p class="subtitle">Tecnologias e ferramentas que domino.</p>
+            <h2 class="title-gradient">{{ t('skills.title') }}</h2>
+            <p class="subtitle">{{ t('skills.subtitle') }}</p>
           </div>
 
           <div class="tabs-wrapper">
@@ -23,7 +23,7 @@
                 :class="{ active: activeTab === tab }"
                 @click="changeTab(tab)"
               >
-                <span class="btn-text">{{ tab.charAt(0).toUpperCase() + tab.slice(1) }}</span>
+                <span class="btn-text">{{ t(`skills.tabs.${tab}`) }}</span>
                 <div v-if="activeTab === tab" class="tab-indicator"></div>
               </button>
             </div>
@@ -56,15 +56,15 @@
                 <div v-if="hoveredSkill.name === 'default'" class="skill-detail">
                   <div class="info-badge">
                     <Icon icon="fluent:info-24-filled" class="info-icon" />
-                    <span>Dica</span>
+                    <span>INFO</span>
                   </div>
-                  <p class="desc-text-default">{{ hoveredSkill.desc }}</p>
+                  <p class="desc-text-default">{{ t('skills.default_desc') }}</p>
                 </div>
                 <div v-else class="skill-detail">
-                  <span class="detail-category">{{ activeTab }}</span>
+                  <span class="detail-category">{{ t(`skills.tabs.${activeTab}`) }}</span>
                   <h4 class="detail-title">{{ hoveredSkill.name }}</h4>
                   <div class="divider"></div>
-                  <p class="desc-text">{{ hoveredSkill.desc }}</p>
+                  <p class="desc-text">{{ t(`skills.items.${hoveredSkill.name}`) }}</p>
                 </div>
               </div>
             </Transition>
@@ -78,14 +78,17 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useI18n } from "vue-i18n";
 import { Icon } from '@iconify/vue';
+
+const { t } = useI18n();
 
 const sectionRef = ref(null);
 const isVisible = ref(false);
 let observer = null;
 
 const activeTab = ref('backend');
-const defaultState = { name: 'default', desc: 'Passe o mouse (ou toque) sobre uma tecnologia para explorar minha experiência técnica.' };
+const defaultState = { name: 'default' };
 const hoveredSkill = ref(defaultState);
 
 const changeTab = (tab) => {
@@ -98,28 +101,28 @@ const resetHover = () => { hoveredSkill.value = defaultState; };
 
 const skillsData = {
   backend: [
-    { name: 'Java', icon: 'logos:java', desc: 'Sólida experiência em arquitetura MVC, Spring Boot e desenvolvimento de microserviços robustos.' },
-    { name: 'Node.js', icon: 'logos:nodejs-icon', desc: 'Criação de APIs rápidas e escaláveis utilizando Express e ecossistema JavaScript assíncrono.' },
-    { name: '.NET', icon: 'logos:dotnet', desc: 'Desenvolvimento de aplicações seguras com C#, focando em performance e integração com ecossistema Microsoft.' },
-    { name: 'MySQL', icon: 'logos:mysql-icon', desc: 'Gerenciamento de base de dados relacionais com foco em performance, consistência e alta disponibilidade.' }, 
-    { name: 'PostgreSQL', icon: 'logos:postgresql', desc: 'Domínio em modelagem de dados, otimização de queries e manutenção de integridade.' },
-    { name: 'MongoDB', icon: 'logos:mongodb-icon', desc: 'Implementação de soluções NoSQL flexíveis, focando em alta disponibilidade.' }
+    { name: 'Java', icon: 'logos:java' },
+    { name: 'Nodejs', icon: 'logos:nodejs-icon' },
+    { name: 'DotNet', icon: 'logos:dotnet' },
+    { name: 'MySQL', icon: 'logos:mysql-icon' }, 
+    { name: 'PostgreSQL', icon: 'logos:postgresql' },
+    { name: 'MongoDB', icon: 'logos:mongodb-icon' }
   ],
   frontend: [
-    { name: 'TypeScript', icon: 'logos:typescript-icon', desc: 'Aplicação de tipagem estática para garantir escalabilidade em grandes bases de código.' },
-    { name: 'CSS3', icon: 'logos:css-3', desc: 'Criação de layouts modernos e responsivos com domínio de Flexbox, Grid e animações puras.' },
-    { name: 'HTML5', icon: 'logos:html-5', desc: 'Estruturação semântica de alta qualidade para acessibilidade e performance em SEO.' },
-    { name: 'React', icon: 'logos:react', desc: 'Construção de SPAs dinâmicas com Hooks, Context API e gerenciamento de estado.' },
-    { name: 'Vue.js', icon: 'logos:vue', desc: 'Desenvolvimento reativo e modular com Composition API e alta performance.' },
-    { name: 'Next.js', icon: 'logos:nextjs-icon', desc: 'Otimização de Web Vitals com Server Side Rendering para máxima velocidade.' }
+    { name: 'TypeScript', icon: 'logos:typescript-icon' },
+    { name: 'CSS3', icon: 'logos:css-3' },
+    { name: 'HTML5', icon: 'logos:html-5' },
+    { name: 'React', icon: 'logos:react' },
+    { name: 'Vuejs', icon: 'logos:vue' },
+    { name: 'Nextjs', icon: 'logos:nextjs-icon' }
   ],
   outros: [
-    { name: 'Git', icon: 'logos:git-icon', desc: 'Gestão de fluxo de trabalho (GitFlow) e versionamento colaborativo.' },
-    { name: 'Azure', icon: 'logos:microsoft-azure', desc: 'Configuração de serviços cloud e deploy em ambiente Microsoft.' },
-    { name: 'Docker', icon: 'logos:docker-icon', desc: 'Containerização de aplicações para garantir paridade entre ambientes.' },
-    { name: 'Linux', icon: 'logos:linux-tux', desc: 'Operação em servidores e automação via Bash Script.' },
-    { name: 'Jenkins', icon: 'logos:jenkins', desc: 'Configuração de pipelines automatizados para CI/CD.' },
-    { name: 'AWS', icon: 'logos:aws', desc: 'Utilização de infraestrutura como serviço (S3, EC2, Lambda) na nuvem Amazon.' }
+    { name: 'Git', icon: 'logos:git-icon' },
+    { name: 'Azure', icon: 'logos:microsoft-azure' },
+    { name: 'Docker', icon: 'logos:docker-icon' },
+    { name: 'Linux', icon: 'logos:linux-tux' },
+    { name: 'Jenkins', icon: 'logos:jenkins' },
+    { name: 'AWS', icon: 'logos:aws' }
   ]
 };
 
