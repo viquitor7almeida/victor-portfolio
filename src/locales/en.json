@@ -71,7 +71,7 @@
     "name_label": "Name",
     "name_placeholder": "Your full name",
     "email_label": "Email",
-    "email_placeholder": "your@email.com",
+    "email_placeholder": "your{'@'}email.com",
     "message_label": "Message",
     "message_placeholder": "How can I help you?",
     "btn_send": "Send Message",
