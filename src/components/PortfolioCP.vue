@@ -20,9 +20,31 @@
           <Transition :name="transitionName" mode="out-in">
             <div :key="currentIndex" class="project-layout">
               <div class="image-column">
-                <div class="image-wrapper">
-                  <div class="image-glow"></div>
-                  <img :src="currentProject.image" :alt="t(`portfolio.projects.${currentProject.id}.title`)" class="project-img" />
+                <div class="image-gallery">
+                  <Transition :name="imageTransitionName" mode="out-in">
+                    <div :key="currentImageIndex" class="image-wrapper">
+                      <div class="image-glow"></div>
+                      <img :src="currentProject.images[currentImageIndex]" :alt="t(`portfolio.projects.${currentProject.id}.title`)" class="project-img" />
+                    </div>
+                  </Transition>
+                  
+                  <div v-if="currentProject.images.length > 1" class="gallery-nav">
+                    <button class="gallery-prev" @click.stop="prevImage">
+                      <Icon icon="fluent:chevron-left-20-filled" />
+                    </button>
+                    <div class="gallery-indicators">
+                      <span 
+                        v-for="(_, idx) in currentProject.images" 
+                        :key="idx"
+                        class="gallery-dot"
+                        :class="{ active: idx === currentImageIndex }"
+                        @click.stop="goToImage(idx)"
+                      ></span>
+                    </div>
+                    <button class="gallery-next" @click.stop="nextImage">
+                      <Icon icon="fluent:chevron-right-20-filled" />
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -80,10 +102,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { Icon } from '@iconify/vue';
-import imgMusicLib from '@/assets/music-lib.png';
+import imgMusicLib1 from '@/assets/music-lib1.png';
+import imgMusicLib2 from '@/assets/music-lib2.png';
+import imgMusicLib3 from '@/assets/music-lib3.png';
+import imgMusicLib4 from '@/assets/music-lib4.png';
+import imgMusicLib5 from '@/assets/music-lib5.png';
+import imgMusicLib6 from '@/assets/music-lib6.png';
 import imgBioSynth from '@/assets/bio-synth.png';
 
 const { t } = useI18n();
@@ -91,14 +118,16 @@ const { t } = useI18n();
 const sectionRef = ref(null);
 const isVisible = ref(false);
 const currentIndex = ref(0);
+const currentImageIndex = ref(0);
 const transitionName = ref('slide-right');
+const imageTransitionName = ref('image-slide-right');
 let observer = null;
 
 const projects = [
   {
     id: 'music_lib',
     techs: ['Java 17', 'Spring Boot', 'Spring Security', 'Maven', 'MySql', 'Vue.js', 'JPA', 'Docker'],
-    image: imgMusicLib,
+    images: [imgMusicLib1, imgMusicLib2, imgMusicLib3, imgMusicLib4, imgMusicLib5, imgMusicLib6], 
     links: {
       front:'https://github.com/viquitor7almeida/LibMusical-Front',
       back: 'https://github.com/viquitor7almeida/LibMusical-Api'
@@ -107,7 +136,7 @@ const projects = [
   {
     id: 'bio_synth',
     techs: ['Java 17', 'Swing', 'Graphics2D', 'Multithreading', 'SOLID', 'OOP'],
-    image: imgBioSynth,
+    images: [imgBioSynth],
     links: {
       repo: 'https://github.com/viquitor7almeida/Ecosystem'
     }
@@ -115,6 +144,10 @@ const projects = [
 ];
 
 const currentProject = computed(() => projects[currentIndex.value]);
+
+watch(currentIndex, () => {
+  currentImageIndex.value = 0;
+});
 
 const nextProject = () => {
   if (projects.length <= 1) return;
@@ -132,6 +165,24 @@ const goToProject = (index) => {
   if (index === currentIndex.value) return;
   transitionName.value = index > currentIndex.value ? 'slide-left' : 'slide-right';
   currentIndex.value = index;
+};
+
+const nextImage = () => {
+  if (currentProject.value.images.length <= 1) return;
+  imageTransitionName.value = 'image-slide-left';
+  currentImageIndex.value = (currentImageIndex.value + 1) % currentProject.value.images.length;
+};
+
+const prevImage = () => {
+  if (currentProject.value.images.length <= 1) return;
+  imageTransitionName.value = 'image-slide-right';
+  currentImageIndex.value = (currentImageIndex.value - 1 + currentProject.value.images.length) % currentProject.value.images.length;
+};
+
+const goToImage = (index) => {
+  if (index === currentImageIndex.value) return;
+  imageTransitionName.value = index > currentImageIndex.value ? 'image-slide-left' : 'image-slide-right';
+  currentImageIndex.value = index;
 };
 
 onMounted(() => {
@@ -227,7 +278,7 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 .project-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 450px;
+  min-height: 550px;
 }
 
 .image-column {
@@ -238,6 +289,12 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   position: relative;
 }
 
+.image-gallery {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+}
+
 .image-wrapper {
   position: relative;
   width: 100%;
@@ -245,6 +302,7 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   overflow: hidden;
   transform: perspective(1000px) rotateY(5deg);
   transition: transform 0.5s ease;
+  aspect-ratio: 16/9;
 }
 
 .image-wrapper:hover {
@@ -265,13 +323,74 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 
 .project-img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 16/9;
+  height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  object-position: center;
   position: relative;
   z-index: 1;
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-nav {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 20;
+}
+
+.gallery-prev,
+.gallery-next {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.gallery-prev:hover,
+.gallery-next:hover {
+  color: #ae0909;
+  transform: scale(1.15);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.gallery-indicators {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.gallery-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-dot.active {
+  width: 24px;
+  border-radius: 10px;
+  background: #ae0909;
+}
+
+.gallery-dot:hover {
+  background: rgba(174, 9, 9, 0.8);
+  transform: scale(1.2);
 }
 
 .info-column {
@@ -387,13 +506,24 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
 .slide-right-enter-active, .slide-right-leave-active {
   transition: all 0.5s ease;
 }
+
 .slide-left-enter-from { opacity: 0; transform: translateX(30px); }
 .slide-left-leave-to { opacity: 0; transform: translateX(-30px); }
 .slide-right-enter-from { opacity: 0; transform: translateX(-30px); }
 .slide-right-leave-to { opacity: 0; transform: translateX(30px); }
 
+.image-slide-left-enter-active, .image-slide-left-leave-active,
+.image-slide-right-enter-active, .image-slide-right-leave-active {
+  transition: all 0.4s ease;
+}
+
+.image-slide-left-enter-from { opacity: 0; transform: translateX(20px); }
+.image-slide-left-leave-to { opacity: 0; transform: translateX(-20px); }
+.image-slide-right-enter-from { opacity: 0; transform: translateX(-20px); }
+.image-slide-right-leave-to { opacity: 0; transform: translateX(20px); }
+
 @media (max-width: 1024px) {
-  .project-layout { grid-template-columns: 1fr; }
+  .project-layout { grid-template-columns: 1fr; min-height: auto; }
   .image-column { padding: 30px; }
   .info-column { padding: 0 40px 40px 40px; text-align: center; align-items: center; }
   .tech-tags, .action-buttons { justify-content: center; }
@@ -405,10 +535,12 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   .carousel-wrapper { gap: 10px; }
   .nav-btn { width: 40px; height: 40px; font-size: 20px; }
   .project-title { font-size: 1.8rem; }
-  .image-wrapper { transform: none; }
+  .image-wrapper { transform: none; aspect-ratio: 16/9; }
   .image-wrapper:hover { transform: scale(1.02); }
   .action-buttons { flex-direction: column; width: 100%; }
   .btn-secondary { width: 100%; justify-content: center; }
+  .gallery-nav { gap: 12px; }
+  .gallery-prev, .gallery-next { width: 28px; height: 28px; font-size: 18px; }
 }
 
 @media (max-width: 480px) {
@@ -416,5 +548,6 @@ onBeforeUnmount(() => { if (observer) observer.disconnect(); });
   .prev-btn { left: 10px; }
   .next-btn { right: 10px; }
   .info-column { padding: 0 20px 30px 20px; }
+  .gallery-nav { bottom: 10px; gap: 10px; }
 }
 </style>
