@@ -60,7 +60,14 @@
       "desc": "Complete platform for managing compositions, involving chords, audios, verses, and more. The backend was developed with rigorous quality standards, implementing robust authentication and authorization via Spring Security, JWT, User management, DTOs, JPA test database generation, etc. The layered architecture and dependency management via Maven ensure a highly scalable, secure, and easy-to-maintain system, prepared for high concurrency.",
       "btnFront": "Frontend Repo",
       "btnBack": "Backend Repo"
-            }
+      },
+
+      "bio_synth": {
+        "title": "Bio Synth",
+        "desc": "Chemical evolution simulator focused on high performance and parallel computing. Developed in pure Java, the engine processes thousands of simultaneous cellular interactions using Multithreading and optimized neighborhood logic. The architecture implements Design Patterns such as Strategy and SOLID (OCP) for decoupled evolution rules, while Graphics2D rendering ensures visual fluidity and high-speed execution without external dependencies.",
+        "btnRepo": "Project Repository"
+        }
+
         }
     },
 

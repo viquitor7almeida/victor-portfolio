@@ -60,7 +60,14 @@
       "desc": "Plataforma completa para gestão de composições, envolvendo cifras, áudios, versos e afins. O backend foi desenvolvido com rigoroso padrão de qualidade, implementando autenticação e autorização robustas via Spring Security, JWT, Gestão de usuários, DTOs, Geração de bancos de teste via JPA e etc. A arquitetura em camadas e o gerenciamento de dependências via Maven garantem um sistema altamente escalável, seguro e de fácil manutenção, preparado para alta concorrência.",
       "btnFront": "Repositório Front",
       "btnBack": "Repositório Back"
-            }
+            },
+
+    "bio_synth": {
+      "title": "Bio Synth",
+      "desc": "Simulador de evolução química focado em alta performance e computação paralela. Desenvolvido em Java puro, o motor processa milhares de interações celulares simultâneas utilizando Multithreading e lógica de vizinhança otimizada. A arquitetura implementa padrões de projeto como Strategy e SOLID (OCP) para permitir regras de evolução desacopladas, enquanto a renderização via Graphics2D garante fluidez visual sem depender de bibliotecas externas.",
+      "btnRepo": "Repositório do Projeto"
+    }
+
         }
     },
 

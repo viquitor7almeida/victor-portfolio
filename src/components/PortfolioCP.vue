@@ -39,14 +39,22 @@
                 <p class="project-desc">{{ t(`portfolio.projects.${currentProject.id}.desc`) }}</p>
 
                 <div class="action-buttons">
-                  <a :href="currentProject.links.front" target="_blank" class="btn-secondary">
-                    <Icon icon="mdi:github" class="btn-icon" />
-                    <span>{{ t(`portfolio.projects.${currentProject.id}.btnFront`) }}</span>
-                  </a>
-                  <a :href="currentProject.links.back" target="_blank" class="btn-secondary">
-                    <Icon icon="mdi:github" class="btn-icon" />
-                    <span>{{ t(`portfolio.projects.${currentProject.id}.btnBack`) }}</span>
-                  </a>
+                  <template v-if="currentProject.id === 'music_lib'">
+                    <a :href="currentProject.links.front" target="_blank" class="btn-secondary">
+                      <Icon icon="mdi:github" class="btn-icon" />
+                      <span>{{ t(`portfolio.projects.${currentProject.id}.btnFront`) }}</span>
+                    </a>
+                    <a :href="currentProject.links.back" target="_blank" class="btn-secondary">
+                      <Icon icon="mdi:github" class="btn-icon" />
+                      <span>{{ t(`portfolio.projects.${currentProject.id}.btnBack`) }}</span>
+                    </a>
+                  </template>
+                  <template v-else>
+                    <a :href="currentProject.links.repo" target="_blank" class="btn-secondary">
+                      <Icon icon="mdi:github" class="btn-icon" />
+                      <span>{{ t(`portfolio.projects.${currentProject.id}.btnRepo`) }}</span>
+                    </a>
+                  </template>
                 </div>
               </div>
             </div>
@@ -76,6 +84,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import { useI18n } from "vue-i18n";
 import { Icon } from '@iconify/vue';
 import imgMusicLib from '@/assets/music-lib.png';
+import imgBioSynth from '@/assets/bio-synth.png';
 
 const { t } = useI18n();
 
@@ -85,15 +94,22 @@ const currentIndex = ref(0);
 const transitionName = ref('slide-right');
 let observer = null;
 
-// Mantemos apenas dados estruturais aqui. Textos vão para o i18n.
 const projects = [
   {
     id: 'music_lib',
-    techs: ['Java 17', 'Spring Boot', 'Spring Security', 'Maven', 'MySql', 'Vue.js', 'JPA', 'Sqlite', 'Docker'],
+    techs: ['Java 17', 'Spring Boot', 'Spring Security', 'Maven', 'MySql', 'Vue.js', 'JPA', 'Docker'],
     image: imgMusicLib,
     links: {
       front:'https://github.com/viquitor7almeida/LibMusical-Front',
       back: 'https://github.com/viquitor7almeida/LibMusical-Api'
+    }
+  },
+  {
+    id: 'bio_synth',
+    techs: ['Java 17', 'Swing', 'Graphics2D', 'Multithreading', 'SOLID', 'OOP'],
+    image: imgBioSynth,
+    links: {
+      repo: 'https://github.com/viquitor7almeida/Ecosystem'
     }
   }
 ];
