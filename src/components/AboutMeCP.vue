@@ -38,9 +38,9 @@
       </div>
 
       <div class="actions-container anim-fade-up-buttons">
-        <a :href="resume" target="_blank" class="btn-primary">
+        <!-- <a :href="resume" target="_blank" class="btn-primary">
           {{ t('about.btnResume') }}
-        </a>
+        </a> -->
         <a href="https://www.linkedin.com/in/jovalmeida/" target="_blank" class="btn-secondary">
           {{ t('about.btnLinkedin') }}
         </a>
