@@ -7,16 +7,23 @@
   },
   "about": {
     "title": "Hello World!",
-    "p1": "My name is {name}, I am a young {dev} from an early age. My curiosity for 'tinkering' with electronics quickly turned into a fascination for the world of {prog} and software development.",
-    "p1_name": "João Victor",
-    "p1_dev": "developer passionate about technology",
-    "p1_prog": "programming",
-    "p2": "I started my {java} studies as a teenager and, over time, decided to go deeper into the language, {backend} Shortly after, I expanded my knowledge to {js} to improve my {front} skills. I am constantly exploring new technologies out of a pure desire to learn and build {robust} solutions.",
-    "p2_java": "JAVA",
-    "p2_backend": "focusing on BACKEND.",
+    "p1": "I'm a {dev} since a very young age. My curiosity about tinkering with electronics quickly turned into a fascination with how things work and {break}.",
+    "p1_dev": "Developer Passionate About Technology",
+    "p1_break": "How They Break",
+    "p2": "That curiosity led me to programming and {sec}. I started studying {java} in my teens, dove deeper into {backend}, and later expanded to {js} for {front}. Along the way, I kept coming back to security: how systems are protected, how data are kept safe, how failures happen and so many other questions.",
+    "p2_sec": "Information Security",
+    "p2_java": "Java",
+    "p2_backend": "Backend",
     "p2_js": "JavaScript",
     "p2_front": "Frontend",
-    "p2_robust": "robust and efficient",
+    "p3": "I've been applying security practices to development, such as authentication and authorization ({jwt}), data encryption and {lgpd} compliance, while studying {cyber} across different areas, including {red}, {blue}, {corp} and {appsec}.",
+    "p3_jwt": "JWT/OAuth",
+    "p3_lgpd": "LGPD",
+    "p3_cyber": "Cyber Security",
+    "p3_red": "Red Team",
+    "p3_blue": "Blue Team",
+    "p3_corp": "Corporate Security",
+    "p3_appsec": "AppSec",
     "btnResume": "View Resume",
     "btnLinkedin": "View LinkedIn"
   },
@@ -24,9 +31,10 @@
     "title": "Skills",
     "subtitle": "Technologies and tools I master.",
     "tabs": {
+      "cyber": "Security",
+      "devops": "DevOps",
       "backend": "Backend",
-      "frontend": "Frontend",
-      "outros": "Others"
+      "frontend": "Frontend"
     },
     "default_desc": "Hover (or tap) over a technology to explore my technical experience.",
     "items": {
@@ -42,6 +50,10 @@
       "React": "Building dynamic SPAs with Hooks, Context API, and state management.",
       "Vuejs": "Reactive and modular development with Composition API and high performance.",
       "Nextjs": "Web Vitals optimization with Server Side Rendering for maximum speed.",
+      "Kali Linux": "Use of the industry-standard pentesting distribution, mastering vulnerability analysis and intrusion testing tools.",
+      "Wireshark": "Deep network traffic analysis and protocol diagnostics through packet capture and inspection.",
+      "Criptografia": "Knowledge of symmetric and asymmetric encryption (AES, RSA), hash functions and secure protocols such as TLS/HTTPS.",
+      "OWASP": "Applying the OWASP Top 10 to build secure applications and prevent common vulnerabilities.",
       "Git": "Workflow management (GitFlow) and collaborative versioning.",
       "Azure": "Cloud services configuration and deployment in Microsoft environment.",
       "Docker": "Containerization of applications to ensure parity between environments.",
@@ -55,7 +67,13 @@
   "title": "Portfolio",
   "subtitle": "Real projects, robust solutions, and clean code.",
   "projects": {
-    "music_lib": {
+    "sbom_guard": {
+      "title": "SBOM Guard",
+      "desc": "Security CLI tool for the software supply chain, built in Java 21, that maps dependencies, generates SBOM (CycloneDX), attests integrity, and verifies builds with digital signatures. It implements 100% native JDK cryptography (Ed25519 + SHA-256) with no external dependencies, plus an append-only ledger and hash chaining for immutable audits. Deterministic exit codes ready to be used as a gate in CI/CD pipelines, with 145 automated tests covering all modules.",
+      "btnRepo": "Project Repository"
+    },
+
+      "music_lib": {
       "title": "Music Library",
       "desc": "Complete platform for managing compositions, involving chords, audios, verses, and more. The backend was developed with rigorous quality standards, implementing robust authentication and authorization via Spring Security, JWT, User management, DTOs, JPA test database generation, etc. The layered architecture and dependency management via Maven ensure a highly scalable, secure, and easy-to-maintain system, prepared for high concurrency.",
       "btnFront": "Frontend Repo",

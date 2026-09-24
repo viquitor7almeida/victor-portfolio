@@ -46,7 +46,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import opcoesIcon from '../assets/java.png';
+import opcoesIcon from '../assets/kali.png';
 import sobreIcon from '../assets/sobre.png';
 import skillsIcon from '../assets/skills.png'; 
 import portfolioIcon from '../assets/portfolio.png'; 
@@ -118,6 +118,17 @@ const translatedMenu = computed(() => [
     transition: all 0.3s ease;
     position: relative;
     padding: 5px 0;
+  }
+
+  .menu-icon {
+    height: clamp(60px, 5vw, 48px);
+    width: auto;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .home-link:hover .menu-icon {
+    transform: scale(1.08);
   }
 
   .nav-item-icon {

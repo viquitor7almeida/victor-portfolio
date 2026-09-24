@@ -17,7 +17,7 @@
           <div class="tabs-wrapper">
             <div class="tabs-nav">
               <button 
-                v-for="tab in ['backend', 'frontend', 'outros']" 
+                v-for="tab in ['cyber', 'devops', 'backend', 'frontend']" 
                 :key="tab"
                 class="tab-btn" 
                 :class="{ active: activeTab === tab }"
@@ -40,7 +40,7 @@
                 @click="updateHover(skill)"
               >
                 <div class="icon-box">
-                  <Icon :icon="skill.icon" class="skill-icon" />
+                  <Icon :icon="skill.icon" :color="skill.color" :width="skill.size" class="skill-icon" />
                 </div>
                 <span class="skill-name">{{ skill.name }}</span>
               </div>
@@ -87,7 +87,7 @@ const sectionRef = ref(null);
 const isVisible = ref(false);
 let observer = null;
 
-const activeTab = ref('backend');
+const activeTab = ref('cyber');
 const defaultState = { name: 'default' };
 const hoveredSkill = ref(defaultState);
 
@@ -100,6 +100,22 @@ const updateHover = (skill) => { hoveredSkill.value = skill; };
 const resetHover = () => { hoveredSkill.value = defaultState; };
 
 const skillsData = {
+  cyber: [
+    { name: 'Kali Linux', icon: 'thesvg-color:kali-linux', size: '1.35em' },
+    { name: 'Linux', icon: 'logos:linux-tux' },
+    { name: 'Docker', icon: 'logos:docker-icon' },
+    { name: 'Wireshark', icon: 'thesvg-color:wireshark' },
+    { name: 'Criptografia', icon: 'mdi:encryption', color: '#d52c2c' },
+    { name: 'OWASP', icon: 'simple-icons:owasp', color: '#d52c2c' }
+  ],
+  devops: [
+    { name: 'Git', icon: 'logos:git-icon' },
+    { name: 'Jenkins', icon: 'logos:jenkins' },
+    { name: 'Azure', icon: 'logos:microsoft-azure' },
+    { name: 'AWS', icon: 'logos:aws' },
+    { name: 'Docker', icon: 'logos:docker-icon' },
+    { name: 'Linux', icon: 'logos:linux-tux' }
+  ],
   backend: [
     { name: 'Java', icon: 'logos:java' },
     { name: 'Nodejs', icon: 'logos:nodejs-icon' },
@@ -115,14 +131,6 @@ const skillsData = {
     { name: 'React', icon: 'logos:react' },
     { name: 'Vuejs', icon: 'logos:vue' },
     { name: 'Nextjs', icon: 'logos:nextjs-icon' }
-  ],
-  outros: [
-    { name: 'Git', icon: 'logos:git-icon' },
-    { name: 'Azure', icon: 'logos:microsoft-azure' },
-    { name: 'Docker', icon: 'logos:docker-icon' },
-    { name: 'Linux', icon: 'logos:linux-tux' },
-    { name: 'Jenkins', icon: 'logos:jenkins' },
-    { name: 'AWS', icon: 'logos:aws' }
   ]
 };
 

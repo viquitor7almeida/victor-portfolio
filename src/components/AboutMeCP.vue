@@ -23,17 +23,26 @@
       
       <div class="description-container">
         <i18n-t keypath="about.p1" tag="p" class="description anim-fade-up-delayed">
-          <template #name><strong>{{ t('about.p1_name') }}</strong></template>
           <template #dev><strong>{{ t('about.p1_dev') }}</strong></template>
-          <template #prog><strong>{{ t('about.p1_prog') }}</strong></template>
+          <template #break><strong>{{ t('about.p1_break') }}</strong></template>
         </i18n-t>
 
         <i18n-t keypath="about.p2" tag="p" class="description anim-fade-up-list">
+          <template #sec><strong>{{ t('about.p2_sec') }}</strong></template>
           <template #java><strong>{{ t('about.p2_java') }}</strong></template>
           <template #backend><strong>{{ t('about.p2_backend') }}</strong></template>
           <template #js><strong>{{ t('about.p2_js') }}</strong></template>
           <template #front><strong>{{ t('about.p2_front') }}</strong></template>
-          <template #robust><strong>{{ t('about.p2_robust') }}</strong></template>
+        </i18n-t>
+
+        <i18n-t keypath="about.p3" tag="p" class="description anim-fade-up-extra">
+          <template #jwt><strong>{{ t('about.p3_jwt') }}</strong></template>
+          <template #lgpd><strong>{{ t('about.p3_lgpd') }}</strong></template>
+          <template #cyber><strong>{{ t('about.p3_cyber') }}</strong></template>
+          <template #red><strong>{{ t('about.p3_red') }}</strong></template>
+          <template #blue><strong>{{ t('about.p3_blue') }}</strong></template>
+          <template #corp><strong>{{ t('about.p3_corp') }}</strong></template>
+          <template #appsec><strong>{{ t('about.p3_appsec') }}</strong></template>
         </i18n-t>
       </div>
 
@@ -209,12 +218,12 @@ onBeforeUnmount(() => {
   transform: translateY(-3px);
 }
 
-.anim-fade-up-delayed, .anim-fade-up-list, .anim-fade-left, .anim-fade-up-buttons {
+.anim-fade-up-delayed, .anim-fade-up-list, .anim-fade-up-extra, .anim-fade-left, .anim-fade-up-buttons {
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.anim-fade-up-delayed, .anim-fade-up-list, .anim-fade-up-buttons {
+.anim-fade-up-delayed, .anim-fade-up-list, .anim-fade-up-extra, .anim-fade-up-buttons {
   transform: translateY(30px);
 }
 
@@ -224,8 +233,9 @@ onBeforeUnmount(() => {
 
 .is-visible .anim-fade-up-delayed { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
 .is-visible .anim-fade-up-list { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+.is-visible .anim-fade-up-extra { opacity: 1; transform: translateY(0); transition-delay: 0.8s; }
 .is-visible .anim-fade-left { opacity: 1; transform: translateX(0); transition-delay: 0.2s; }
-.is-visible .anim-fade-up-buttons { opacity: 1; transform: translateY(0); transition-delay: 0.8s; }
+.is-visible .anim-fade-up-buttons { opacity: 1; transform: translateY(0); transition-delay: 1s; }
 
 
 @media (max-width: 1024px) {

@@ -7,16 +7,23 @@
   },
   "about": {
     "title": "Olá Mundo!",
-    "p1": "Me chamo {name}, sou um jovem {dev} desde muito cedo. Minha curiosidade por 'mexer' com eletrônicos rapidamente se transformou em fascínio pelo mundo da {prog} e do desenvolvimento de software.",
-    "p1_name": "João Victor",
-    "p1_dev": "desenvolvedor apaixonado por tecnologia",
-    "p1_prog": "programação",
-    "p2": "Comecei meus estudos em {java} na adolescência e, com o passar do tempo, decidi me aprofundar na linguagem, {backend} Logo após, expandi meu conhecimento para {js} para aprimorar minhas habilidades em {front} Estou constantemente explorando novas tecnologias por puro desejo de aprender e construir soluções {robust}.",
-    "p2_java": "JAVA",
-    "p2_backend": "focando no BACKEND.",
+    "p1": "Sou um {dev} desde muito novo. Minha curiosidade em mexer com eletrônica rapidamente virou fascínio por entender como as coisas funcionam e {break}.",
+    "p1_dev": "Desenvolvedor Apaixonado por Tecnologia",
+    "p1_break": "Como Elas Quebram",
+    "p2": "Essa curiosidade me levou à programação e à {sec}. Comecei estudando {java} na adolescência, me aprofundei em {backend} e depois expandi para {js} no {front}. No caminho, sempre voltava para segurança: como sistemas são protegidos, como dados são mantidos seguros, como falhas acontecem e tantas outras perguntas.",
+    "p2_sec": "Segurança da Informação",
+    "p2_java": "Java",
+    "p2_backend": "Backend",
     "p2_js": "JavaScript",
     "p2_front": "Frontend",
-    "p2_robust": "robustas e eficientes",
+    "p3": "Venho aplicando práticas de segurança no desenvolvimento, como autenticação e autorização ({jwt}), criptografia de dados e conformidade com a {lgpd}, enquanto estudo {cyber} em diferentes áreas, incluindo {red}, {blue}, {corp} e {appsec}.",
+    "p3_jwt": "JWT/OAuth",
+    "p3_lgpd": "LGPD",
+    "p3_cyber": "Cyber Security",
+    "p3_red": "Red Team",
+    "p3_blue": "Blue Team",
+    "p3_corp": "Segurança Corporativa",
+    "p3_appsec": "AppSec",
     "btnResume": "Ver Currículo",
     "btnLinkedin": "Ver LinkedIn"
   },
@@ -24,9 +31,10 @@
     "title": "Skills",
     "subtitle": "Tecnologias e ferramentas que domino.",
     "tabs": {
+      "cyber": "Segurança",
+      "devops": "DevOps",
       "backend": "Backend",
-      "frontend": "Frontend",
-      "outros": "Outros"
+      "frontend": "Frontend"
     },
     "default_desc": "Passe o mouse (ou toque) sobre uma tecnologia para explorar minha experiência técnica.",
     "items": {
@@ -42,6 +50,10 @@
       "React": "Construção de SPAs dinâmicas com Hooks, Context API e gerenciamento de estado.",
       "Vuejs": "Desenvolvimento reativo e modular com Composition API e alta performance.",
       "Nextjs": "Otimização de Web Vitals com Server Side Rendering para máxima velocidade.",
+      "Kali Linux": "Uso da distribuição de referência em pentest, dominando ferramentas de análise de vulnerabilidades e testes de intrusão.",
+      "Wireshark": "Análise profunda de tráfego de rede e diagnóstico de protocolos através de captura e inspeção de pacotes.",
+      "Criptografia": "Conhecimento de criptografia simétrica e assimétrica (AES, RSA), funções de hash e protocolos seguros como TLS/HTTPS.",
+      "OWASP": "Aplicação do OWASP Top 10 no desenvolvimento de aplicações seguras, prevenindo vulnerabilidades comuns.",
       "Git": "Gestão de fluxo de trabalho (GitFlow) e versionamento colaborativo.",
       "Azure": "Configuração de serviços cloud e deploy em ambiente Microsoft.",
       "Docker": "Containerização de aplicações para garantir paridade entre ambientes.",
@@ -55,6 +67,12 @@
   "title": "Portfólio",
   "subtitle": "Projetos reais, soluções robustas e código limpo.",
   "projects": {
+    "sbom_guard": {
+      "title": "SBOM Guard",
+      "desc": "Ferramenta CLI de segurança para cadeia de suprimentos de software, desenvolvida em Java 21, que mapeia dependências, gera SBOM (CycloneDX), atesta integridade e verifica builds com assinatura digital. Implementa criptografia 100% nativa do JDK (Ed25519 + SHA-256), sem dependências externas, com ledger append-only e hash chaining para auditoria imutável. Exit codes determinísticos prontos para uso como gate em pipelines CI/CD, com 145 testes automatizados cobrindo todos os módulos.",
+      "btnRepo": "Repositório do Projeto"
+    },
+
     "music_lib": {
       "title": "Lib Musical",
       "desc": "Plataforma completa para gestão de composições, envolvendo cifras, áudios, versos e afins. O backend foi desenvolvido com rigoroso padrão de qualidade, implementando autenticação e autorização robustas via Spring Security, JWT, Gestão de usuários, DTOs, Geração de bancos de teste via JPA e etc. A arquitetura em camadas e o gerenciamento de dependências via Maven garantem um sistema altamente escalável, seguro e de fácil manutenção, preparado para alta concorrência.",

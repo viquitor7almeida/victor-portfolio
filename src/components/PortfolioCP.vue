@@ -112,6 +112,8 @@ import imgMusicLib4 from '@/assets/music-lib4.png';
 import imgMusicLib5 from '@/assets/music-lib5.png';
 import imgMusicLib6 from '@/assets/music-lib6.png';
 import imgBioSynth from '@/assets/bio-synth.png';
+import imgSbom1 from '@/assets/sbom1.png';
+import imgSbom2 from '@/assets/sbom2.png';
 
 const { t } = useI18n();
 
@@ -124,6 +126,14 @@ const imageTransitionName = ref('image-slide-right');
 let observer = null;
 
 const projects = [
+  {
+    id: 'sbom_guard',
+    techs: ['Java 21', 'Maven', 'CycloneDX', 'Ed25519', 'SHA-256', 'CI/CD'],
+    images: [imgSbom1, imgSbom2],
+    links: {
+      repo: 'https://github.com/viquitor7almeida/Sbom_Guard'
+    }
+  },
   {
     id: 'music_lib',
     techs: ['Java 17', 'Spring Boot', 'Spring Security', 'Maven', 'MySql', 'Vue.js', 'JPA', 'Docker'],
